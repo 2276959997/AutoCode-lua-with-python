@@ -16,7 +16,7 @@ lua_roleCreateTime = "roleCreateTime"
 lua_str = "str"
 
 modelLuaListHead = ['<sdkName>', '<strCus>']
-modelLuaListBody2 = ['<deleFunc>', '<Func>']
+modelLuaListBody2 = ['<deleFunc>', '<Func>', '<params>']
 modelLuaListBody3 = ['<Func>']
 
 modelLua_head = """
@@ -46,12 +46,16 @@ modelLua_body2 = """
 --<Func>回调
 function <deleFunc>( params )
 	print('========================<deleFunc>=========================')
+	if params.statusCode == 0 then
+	    -- print params
+	else
+	    print('========================<deleFunc>,error=========================')
 end
 
 --<Func>
 function <Func>()
 	print('========================<Func>=============================')
-	liblua.<Func>(<deleFunc>)
+	liblua.<Func>(<params><deleFunc>)
 end
 """
 
